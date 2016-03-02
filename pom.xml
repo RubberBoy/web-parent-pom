@@ -1,0 +1,569 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.whaty.cbb</groupId>
+		<artifactId>basic-pom</artifactId>
+		<version>2.0</version>
+		<!-- 定义父模块相对路径 -->
+		<relativePath>../basic-pom</relativePath>
+	</parent>
+	
+	<artifactId>web-parent-pom</artifactId>
+	<version>2.0</version>
+	<packaging>pom</packaging>
+	<name>web项目基础pom</name>
+	
+	<properties>
+		<scope-jar>compile</scope-jar>
+		<essh.version>1.0-SNAPSHOT</essh.version>
+		<echarts.version>1.0-SNAPSHOT</echarts.version>
+		<schedule.version>2.0-SNAPSHOT</schedule.version>
+		<excelupload.version>1.0-SNAPSHOT</excelupload.version>
+		<wechat.version>1.0-SNAPSHOT</wechat.version>
+	</properties>
+	
+	<build>
+		<plugins>
+			<!--  测试插件 -->
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.7.2</version>
+				<configuration> 
+					<argLine>-Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=256m</argLine> 
+					<excludes> 
+						<exclude>src/test/java/*.java</exclude> 
+					</excludes> 
+					<forkMode>always</forkMode> 
+				</configuration> 
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<!-- jar包依赖范围
+				默认为compile级别，即打war包时jar包会包含在WEB-INF/lib中,一般作为独立项目打包
+				如果war包只作为依赖使用，应使用provided级别
+				-->
+			<scope>${scope-jar}</scope>
+		</dependency>
+			
+		<dependency>
+			<groupId>com.whaty.framework</groupId>
+			<artifactId>whaty-strutsfixed</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+  
+		<dependency>
+			<groupId>org.apache.oro</groupId>
+			<artifactId>jakarta-oro</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.tools</groupId>
+			<artifactId>apache-ant-zip</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+  
+		<dependency>
+			<groupId>aspect</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+    
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>ejb3-persistence</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+    
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>netty</groupId>
+			<artifactId>netty</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>netscape.javascript</groupId>
+			<artifactId>JSObject</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.ws.xmlschema</groupId>
+			<artifactId>xmlschema</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+         
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json-lib-jdk1.5</artifactId>
+			<classifier>jdk15</classifier>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>jsonplugin</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-jasperreports-plugin</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts.xwork</groupId>
+			<artifactId>xwork-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.logicalcobwebs</groupId>
+			<artifactId>proxool-cglib</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jcommon</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.libthrift</groupId>
+			<artifactId>libthrift</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.directwebremoting</groupId>
+			<artifactId>dwr</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>JavaPNS</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.jaxen</groupId>
+			<artifactId>jaxen-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.jaxen</groupId>
+			<artifactId>jaxen-dom4j</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.jaxen</groupId>
+			<artifactId>jaxen-jdom</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>netscape</groupId>
+			<artifactId>netscape</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.saxpath</groupId>
+			<artifactId>saxpath</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>serializer</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.cliffc</groupId>
+			<artifactId>high-scale-lib</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>xalan</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>jaxb</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>sqljdbc</groupId>
+			<artifactId>sqljdbc</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.javassist</groupId>  
+			<artifactId>javassist</artifactId>  
+			<scope>${scope-jar}</scope>
+		</dependency>  
+        
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>  
+			<groupId>javax.servlet.jsp</groupId>  
+			<artifactId>jsp-api</artifactId>  
+			<scope>test</scope>  
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>hessian</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+            
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.artofsolving</groupId>
+			<artifactId>jodconverter</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.jpush</groupId>
+			<artifactId>jpush-java-library</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.neethi</groupId>
+			<artifactId>neethi</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.whaty</groupId>
+			<artifactId>whatyupload</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.whaty</groupId>
+			<artifactId>whatyutils</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.whaty</groupId>
+			<artifactId>whaty-common</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>classes12</groupId>
+			<artifactId>classes12</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>nls_charset12</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.whaty</groupId>
+			<artifactId>whatycache</artifactId>
+			<scope>${scope-jar}</scope>
+		</dependency>
+
+	</dependencies>
+</project>
